@@ -53,8 +53,7 @@ int countPairs3(int *arr, int len, int value) {
       if (arr[mid] < target)
         left = mid + 1;
       else {
-        right = mid - 1; 
-      }
+        right = mid - 1;}
     }
     int lower = left;
     left = i + 1, right = len - 1;
@@ -63,8 +62,7 @@ int countPairs3(int *arr, int len, int value) {
       if (arr[mid] <= target)
         left = mid + 1;
       else {
-        right = mid - 1; 
-      }
+        right = mid - 1;}
     }
     int upper = right;
     if (lower <= upper)
