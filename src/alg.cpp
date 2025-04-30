@@ -1,6 +1,4 @@
 // Copyright 2021 NNTU-CS
-#include <algorithm>
-#include <vector>
 int countPairs1(int *arr, int len, int value) {
   int count = 0;
   for (int i = 0; i < len; ++i) {
@@ -13,26 +11,24 @@ int countPairs1(int *arr, int len, int value) {
   return count;
 }
 int countPairs2(int *arr, int len, int value) {
-  std::vector<int> vec(arr, arr + len);
-  std::sort(vec.begin(), vec.end());
   int count = 0;
   int left = 0;
   int right = len - 1;
   while (left < right) {
-    int sum = vec[left] + vec[right];
+    int sum = arr[left] + arr[right];
     if (sum == value) {
-      if (vec[left] == vec[right]) {
+      if (arr[left] == arr[right]) {
         int n = right - left + 1;
         count += (n * (n - 1)) / 2;
         break;
       } else {
-          int leftVal = vec[left], leftCount = 0;
-          while (left < right && vec[left] == leftVal) {
+          int leftVal = arr[left], leftCount = 0;
+          while (left < right && arr[left] == leftVal) {
             ++leftCount;
             ++left;
           }
-          int rightVal = vec[right], rightCount = 0;
-          while (right >= left && vec[right] == rightVal) {
+          int rightVal = arr[right], rightCount = 0;
+          while (right >= left && arr[right] == rightVal) {
             ++rightCount;
             --right;
           }
@@ -47,16 +43,14 @@ int countPairs2(int *arr, int len, int value) {
   return count;
 }
 int countPairs3(int *arr, int len, int value) {
-  std::vector<int> vec(arr, arr + len);
-  std::sort(vec.begin(), vec.end());
   int count = 0;
   for (int i = 0; i < len; ++i) {
-    int target = value - vec[i];
+    int target = value - arr[i];
     int left = i + 1;
     int right = len - 1;
     while (left <= right) {
       int mid = (left + right) / 2;
-      if (vec[mid] < target)
+      if (arr[mid] < target)
         left = mid + 1;
       else right = mid - 1;
     }
@@ -64,7 +58,7 @@ int countPairs3(int *arr, int len, int value) {
     left = i + 1, right = len - 1;
     while (left <= right) {
       int mid = (left + right) / 2;
-      if (vec[mid] <= target)
+      if (arr[mid] <= target)
         left = mid + 1;
       else right = mid - 1;
     }
