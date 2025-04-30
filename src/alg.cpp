@@ -1,14 +1,18 @@
 // Copyright 2021 NNTU-CS
-int countPairs1(int *arr, int len, int value) {
-  int count = 0;
-  for (int i = 0; i < len; ++i) {
-    for (int j = i + 1; j < len; ++j) {
-      if (arr[i] + arr[j] == value) {
-        count++;
-      }
+#include <unordered_map>
+int countPairs1(int* arr, int len, int value) {
+    std::unordered_map<int, int> freq;
+    int count = 0;
+
+    for (int i = 0; i < len; ++i) {
+        int complement = value - arr[i];
+        if (freq.count(complement)) {
+            count += freq[complement];
+        }
+        freq[arr[i]]++;
     }
-  }
-  return count;
+
+    return count;
 }
 int countPairs2(int *arr, int len, int value) {
   int count = 0;
